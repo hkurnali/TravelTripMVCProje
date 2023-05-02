@@ -4,13 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace TravelTripProje.Models.Sınıflar
+namespace TravelTripProje.Models.Siniflar
 {
-    public class Hakkimizda
+    public class Admin
     {
+
         [Key]
         public int ID { get; set; }
-        public string FotoURL { get; set; }
-        public string Aciklama { get; set; }
+        public string Kullanıcı { get; set;}
+        public string Sifre { get; set; }
     }
 }
