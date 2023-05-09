@@ -13,8 +13,8 @@ namespace TravelTripProje.Controllers
         // GET: Default
         public ActionResult Index()
         {
-
-            var degerler = b.Blogs.ToList();
+           
+            var degerler = b.Blogs.Take(10).ToList();
 
             return View(degerler);
         }
@@ -30,6 +30,11 @@ namespace TravelTripProje.Controllers
         {
             var deger=b.Blogs.Where(x=>x.ID==1).ToList();
             return PartialView(deger);
+        }
+        public PartialViewResult Partial3()
+        {
+            var degerler = b.Blogs.ToList();
+            return PartialView(degerler);
         }
     }
 }
