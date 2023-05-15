@@ -10,6 +10,7 @@ namespace TravelTripProje.Controllers
     public class AdminController : Controller
     {
         Context c = new Context();
+        [Authorize]
         public ActionResult Index()
         {
             var degerler = c.Blogs.ToList();
@@ -56,6 +57,38 @@ namespace TravelTripProje.Controllers
             return RedirectToAction("Index");
 
         }
+        public ActionResult YorumListesi()
+        {
+            var yorumlar = c.Yorumlars.ToList();
+            return View(yorumlar);
+        }
+        public ActionResult YorumSil(int id)
+        {
+            var ay = c.Yorumlars.Find(id);
+            c.Yorumlars.Remove(ay);
+            c.SaveChanges();
+            return RedirectToAction("YorumListesi");
 
+
+        }
+        public ActionResult YorumGetir(int id)
+        {
+            var bl = c.Yorumlars.Find(id);
+
+            return View("YorumGetir", bl);
+
+
+        }
+        public ActionResult YorumGuncelle(Yorumlar b)
+        {
+            var blg = c.Yorumlars.Find(b.ID);
+            blg.KullaniciAdi = b.KullaniciAdi;
+            blg.Mail = b.Mail;
+            blg.Yorum = b.Yorum;
+            blg.Blogid = b.Blogid;
+            c.SaveChanges();
+            return RedirectToAction("YorumListesi");
+
+        }
     }
 }
